@@ -1,0 +1,17 @@
+@import "tailwindcss";
+#task::-webkit-scrollbar{
+    display: none;
+}
+
+input{
+    border: 2px solid white;
+    outline: none;
+    margin-bottom: 15px;
+    padding: 8px;
+    border-radius: 5px;
+}
+h3{
+    font-weight: 400;
+    font-size:medium;
+
+}
