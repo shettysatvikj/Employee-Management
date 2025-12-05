@@ -1,62 +1,4 @@
-// import React, { useState } from 'react'
 
-// const AdminPage = () => {
-//   const [title, setTitle] = useState('')
-//   const [date, setDate] = useState('')
-//   const [assignto, setAssignto] = useState('')
-//   const [category, setCategory] = useState('')
-//   const [description, setDescription] = useState('')
-//   const [task, setTask] = useState({})
-//   const onSubmit=(e)=>{
-//     e.preventDefault()
-//     setTask({title,date,assignto,category,description,active:true,newTask:true,failed:true,completed:false})
-//     const data =JSON.parse(localStorage.getItem("employees"))
-//     data.forEach(function(e){
-//       if(assignto == e.firstName){
-//         e.tasks.push(task)
-//         console.log(e)
-//       }
-//     })
-//     setAssignto('')
-//     setCategory('')
-//     setDate('')
-//     setTitle('')
-//     setDescription('')
-//   }
-//   return (
-//     <div className='h-[65%] rounded px-5 py-4 mt-5 w-full flex justify-between items-center text-white bg-[#292828]'>
-//         <form onSubmit={onSubmit} className='w-full flex justify-between ' >
-//         <div className='w-[40%]' >
-//             <h3>Task Title</h3>
-//             <input value={title} onChange={(e)=>{
-//               setTitle(e.target.value)
-//             }} type="text" className='w-full' placeholder='Make UI Design' />
-//             <h3>Date</h3>
-//             <input value={date} onChange={(e)=>{
-//               setDate(e.target.value)
-//             }} type='date' className='w-full' />
-//             <h3>Assign to</h3>
-//             <input value={assignto} onChange={(e)=>{
-//               setAssignto(e.target.value)
-//             }} type="text" className='w-full' placeholder='Employee name' />
-//             <h3>Category</h3>
-//             <input value={category} onChange={(e)=>{
-//               setCategory(e.target.value)
-//             }} type="text" className='w-full' placeholder='design,dev,etc' />
-//         </div>
-//         <div className='w-[50%] flex flex-col'>
-//             <h3>Description</h3>
-//             <textarea value={description} onChange={(e)=>{
-//               setDescription(e.target.value)
-//             }} className='h-50 rounded  border-2 border-white'></textarea>
-//             <button className='bg-emerald-400 rounded cursor-pointer mt-8 px-7 py-3'>Create Task</button>
-//         </div>
-//         </form>
-//     </div>
-//   )
-// }
-
-// export default AdminPage 
 import React, { useState } from 'react';
 
 const AdminPage = () => {
@@ -67,33 +9,43 @@ const AdminPage = () => {
   const [description, setDescription] = useState('');
   const [task, setTask] = useState({});
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    setTask({
-      title,
-      date,
-      assignto,
-      category,
-      description,
-      active: true,
-      newTask: true,
-      failed: true,
-      completed: false
-    });
+const onSubmit = (e) => {
+  e.preventDefault();
 
-    const data = JSON.parse(localStorage.getItem("employees"));
-    data.forEach(function (e) {
-      if (assignto === e.firstName) {
-        e.tasks.push(task);
-      }
-    });
-
-    setAssignto('');
-    setCategory('');
-    setDate('');
-    setTitle('');
-    setDescription('');
+  const newTask = {
+    title,
+    date,
+    assignto,
+    category,
+    description,
+    newTask: true,   // 👈 starts as NEW TASK
+    active: false,
+    failed: false,
+    completed: false,
   };
+
+  const employees = JSON.parse(localStorage.getItem("employees")) || [];
+
+  const updatedEmployees = employees.map(emp => {
+    if (emp.firstName.toLowerCase() === assignto.toLowerCase()) {
+      return {
+        ...emp,
+        tasks: [...(emp.tasks || []), newTask],
+      };
+    }
+    return emp;
+  });
+
+  localStorage.setItem("employees", JSON.stringify(updatedEmployees));
+
+  // Reset inputs
+  setAssignto('');
+  setCategory('');
+  setDate('');
+  setTitle('');
+  setDescription('');
+};
+
 
   return (
     <div className="bg-[#161a21] rounded-xl p-7 mt-6 border border-[#22262e] shadow-md">
@@ -164,3 +116,4 @@ const AdminPage = () => {
 };
 
 export default AdminPage;
+

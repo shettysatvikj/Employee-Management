@@ -1,34 +1,3 @@
-// import React, { useState } from 'react'
-
-// const Login = ({handleLogin}) => {
-//     const [email, setEmail] = useState('')
-//     const [password, setPassword] = useState('')
-//     const submitHandler=(e)=>{
-//         e.preventDefault()
-//         handleLogin(email,password)
-//         setEmail('')
-//         setPassword('')
-//     }
-//   return (
-//     <div className='bg-[#07080c] text-white h-screen w-screen flex items-center justify-center'>
-//         <div className=' bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl p-4  flex items-center justify-center   px-15 py-35'>
-//             <form onSubmit={(e)=>{
-//                 submitHandler(e)
-//             }} className='flex flex-col' >
-            
-//                 <input value={email} onChange={(e)=>{
-//                     setEmail(e.target.value)}} required className='border-2 border-emerald-400 px-7 py-5 text-2xl rounded-full outline-none' type="email" placeholder='Enter your email' />
-//                 <input value={password} onChange={(e)=>{
-//                     setPassword(e.target.value)
-//                 }} required className='border-2 border-emerald-400 px-7 py-5 text-2xl outline-none rounded-full mt-4' type="password" placeholder='Enter password' />
-//                 <button className='border-2 cursor-pointer border-white bg-amber-300 text-black px-5 py-3 text-2xl rounded-full mt-8'>Log in</button>
-//             </form>
-//         </div>
-//     </div>
-//   )
-// }
-
-// export default Login
 import React, { useState } from "react";
 
 const Login = ({ handleLogin }) => {

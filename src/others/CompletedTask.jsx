@@ -1,28 +1,5 @@
-// import React from 'react'
 
-// const CompletedTask = ({data}) => {
-//   return (
-//     <div> <div className='bg-green-500 shrink-0 h-full px-5 py-3 rounded w-[300px]'>
-//         <div className='flex items-center justify-between'>
-//             <h2 className='bg-red-600 text-base font-semibold py-1 px-3 rounded'>{data.category}</h2>
-//             <h3 className='text-sm font-medium'>{data.date}</h3>
-//         </div>
-//         <div>
-//             <h2 className='mt-4 text-lg font-semibold'>{data.title}</h2>
-//             <p className='mt-2 text-sm font-medium'>{data.description} </p>
-//         </div>
-//         <div className='mt-6 w-full'>
-//             <button className='bg-amber-400 w-full text-sm rounded py-1 px-2'>Completed</button>
-//         </div>
-//         </div>
-//         </div>
-//   )
-// }
-
-// export default CompletedTask
-import React from 'react';
-
-const CompletedTask = ({ data }) => {
+const CompletedTask = ({ data, onStatusChange }) => {
   return (
     <div className="shrink-0 h-full w-[300px]">
       <div className="bg-[#1e1f26] border border-[#2a2b33] shadow-xl 
@@ -50,6 +27,7 @@ const CompletedTask = ({ data }) => {
         {/* Bottom Section */}
         <div className="mt-6 w-full">
           <button
+            onClick={() => onStatusChange(data.id, "completed")}
             className="w-full text-sm py-2 rounded-xl 
                        bg-[#0affc2]/20 border border-[#0affc2]/30 
                        text-[#0affc2] font-semibold
@@ -65,3 +43,4 @@ const CompletedTask = ({ data }) => {
 };
 
 export default CompletedTask;
+

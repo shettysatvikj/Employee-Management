@@ -5,14 +5,17 @@ import Admin from './dashboard/Admin'
 
 import { AuthContext } from './Context/AuthProvider'
 import { useEffect, useState } from 'react'
-import { getLocalStorage, setLocalStorage } from './LocalStorage/Localstorage'
+
 import { useContext } from 'react'
+import { setLocalStorage, getLocalStorage } from './LocalStorage/Localstorage';
+
+// Initialize once in App.jsx or main entry
+setLocalStorage();
 
 const App = () => {
-  useEffect(() => {
-    // setLocalStorage()
-    getLocalStorage()
-  },)
+ useEffect(() => {
+  getLocalStorage();
+}, []);
   
 const [user, setUser] = useState(null)
 const [loggedInUserData, setLoggedInUserData] = useState(null)
